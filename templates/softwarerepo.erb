@@ -1,0 +1,9 @@
+### THIS FILE IS MANAGED BY PUPPET. ANY MANUAL CHANGES WILL GET OVERWRITTEN.
+#
+# Allow users to browse packages in the repositories manually
+
+<Directory /var/www/repos/ >
+        Options Indexes FollowSymLinks Multiviews
+        Order allow,deny
+        Allow from all
+</Directory>
