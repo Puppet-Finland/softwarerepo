@@ -7,6 +7,9 @@
 #
 # == Parameters
 #
+# [*documentroot*]
+#   Webserver's document root directory. Defaults to 
+#   $::webserver::config::documentroot.
 # [*configure_webserver*]
 #   Select which webserver to configure. Valid values are 'apache2', 'nginx' and 
 #   'false' (don't configure). Currently the value 'nginx' does nothing. 
@@ -15,6 +18,7 @@
 # == Examples
 #
 # class { 'softwarerepo':
+#   documentroot => '/home/www',
 #   configure_webserver => 'apache2',
 # }
 #
@@ -29,14 +33,20 @@
 # See file LICENSE for details
 #
 class softwarerepo
-( 
+(
+    $documentroot=$::webserver::config::documentroot,   
     $configure_webserver='false'
 )
 {
     include softwarerepo::install
-    include softwarerepo::config
+
+    class { 'softwarerepo::config':
+        documentroot => $documentroot,
+    }
 
     if $configure_webserver == 'apache2' {
-        include softwarerepo::config::apache2
+        class { 'softwarerepo::config::apache2':
+            documentroot => $documentroot,
+        }
     }
 }

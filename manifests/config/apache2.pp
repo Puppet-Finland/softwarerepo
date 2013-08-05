@@ -3,7 +3,7 @@
 #
 # Configure Apache2 for use with various software repositories
 #
-class softwarerepo::config::apache2 {
+class softwarerepo::config::apache2($documentroot) {
 
     file { 'file-softwarerepo-softwarerepo':
         name => '/etc/apache2/conf.d/softwarerepo',

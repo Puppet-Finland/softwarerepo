@@ -3,10 +3,10 @@
 #
 # Configure things required by all software repository management tools
 #
-class softwarerepo::config {
+class softwarerepo::config($documentroot) {
 
     file { 'softwarerepo-repos':
-        name => '/var/www/repos',
+        name => "${documentroot}/repos",
         ensure => directory,
         require => Class['webserver::config'],
     }
@@ -32,7 +32,7 @@ class softwarerepo::config {
     # the webserver directory
     file { 'softwarerepo-publickey':
         ensure => present,
-        name => '/var/www/repos/repo-public.gpg',
+        name => "${documentroot}/repos/repo-public.gpg",
         owner => root,
         group => root,
         mode => 644,
@@ -40,7 +40,7 @@ class softwarerepo::config {
     }
 
     exec { 'softwarerepo-publickey-import':
-        command => 'gpg --import /var/www/repos/repo-public.gpg',
+        command => "gpg --import ${documentroot}/repos/repo-public.gpg",
         cwd => '/tmp',
         path => '/usr/bin',
         refreshonly => true,

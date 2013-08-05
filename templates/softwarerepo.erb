@@ -2,7 +2,7 @@
 #
 # Allow users to browse packages in the repositories manually
 
-<Directory /var/www/repos/ >
+<Directory <%= scope.lookupvar('softwarerepo::config::apache2::basedir') %>/repos >
         Options Indexes FollowSymLinks Multiviews
         Order allow,deny
         Allow from all
