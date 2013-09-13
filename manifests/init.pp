@@ -38,6 +38,10 @@ class softwarerepo
     $configure_webserver='false'
 )
 {
+
+# Rationale for this is explained in init.pp of the sshd module
+if hiera('manage_softwarerepo') != 'false' {
+
     include softwarerepo::install
 
     class { 'softwarerepo::config':
@@ -49,4 +53,5 @@ class softwarerepo
             documentroot => $documentroot,
         }
     }
+}
 }
