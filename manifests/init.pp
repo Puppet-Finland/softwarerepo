@@ -40,7 +40,7 @@ class softwarerepo
 {
 
 # Rationale for this is explained in init.pp of the sshd module
-if hiera('manage_softwarerepo') != 'false' {
+if hiera('manage_softwarerepo', 'true') != 'false' {
 
     include softwarerepo::install
 
