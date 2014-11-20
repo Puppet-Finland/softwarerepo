@@ -17,20 +17,20 @@
 #
 # == Examples
 #
-# class { 'softwarerepo':
-#   documentroot => '/home/www',
-#   configure_webserver => 'apache2',
-# }
+#   class { 'softwarerepo':
+#       documentroot => '/home/www',
+#       configure_webserver => 'apache2',
+#   }
 #
 # == Authors
 #
 # Samuli Seppänen <samuli.seppanen@gmail.com>
+#
 # Samuli Seppänen <samuli@openvpn.net>
 #
 # == License
 #
-# BSD-lisence
-# See file LICENSE for details
+# BSD-license. See file LICENSE for details.
 #
 class softwarerepo
 (
